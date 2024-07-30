@@ -1,0 +1,98 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp2
+{
+    class Program
+    {
+        static void Main(string[] args)
+
+        {
+            
+            employee employee1 = new employee("Qasim",4000,10,200) ;
+            Console.WriteLine(employee1.tax);
+            Console.WriteLine(employee1.name);
+            Console.WriteLine(employee1.sallary);
+            Console.WriteLine(employee1.prize1);
+            Console.WriteLine(employee1.Print());
+            Console.WriteLine();
+            Console.ReadKey();
+        }
+
+        public class employee
+        {
+            public string name;
+            public int sallary;
+            public int tax;
+            public int Prize;
+            public string prize1;
+            public employee(string name, int sallry, int tax, int prize)
+            {
+
+                this.name = name;
+                this.sallary = sallry;
+                this.tax = tax;
+                this.Prize = prize;
+            }
+            public employee(string name, int sallry, int tax, int prize, string prize1)
+            {
+
+                this.name = name;
+                this.sallary = sallry;
+                this.tax = tax;
+                this.Prize = prize;
+                this.prize1 = prize1;
+
+            }
+
+            public string Print()
+            {
+                return $"name : {this.name} \n" +
+                   $"sal : {this.sallary} \n"+
+                   $"tax : {this.taxs()} \n";
+            }
+         
+
+
+            public int taxs() => sallary * tax;
+            //{
+            //    if (sallary >= 4000)
+
+            //        this.sallary -=400;
+            //    return this.sallary;
+                
+            //}
+
+
+            public int upgrade()
+            {
+                if (sallary > 1000)
+
+                    sallary += 100;
+                return this.sallary;
+        }
+
+
+
+
+
+
+        }
+
+
+        }
+
+
+
+
+     }
+
+
+
+
+     
+
+
