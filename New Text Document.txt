@@ -89,6 +89,75 @@ namespace ConsoleApp2
 
 
      }
+__________________________________________
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Book
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            book FirstBook = new book("Python101", 1, true);
+            Console.WriteLine($"Book Name: { FirstBook.name}");
+            Console.WriteLine($"Book Id : {FirstBook.id}");
+            Console.WriteLine($"Book Number : {FirstBook.bookNum}");
+            Console.WriteLine($"This book is : {FirstBook.BookAvailable()}");
+            Console.ReadKey();
+
+
+        }
+
+
+        public class book
+        {
+            public string name;
+            public int id;
+            public int bookNum = 20;
+            public bool available;
+            //public string BookAvailable;
+            public book(string name, int id, bool available)
+            {
+                this.name = name;
+                this.id = id;
+                this.available = available;
+                this.bookNum--;
+                  }
+
+            public string BookAvailable() {
+
+                if ( bookNum > 0 )
+                    return "Available";
+                return  "Not Available";
+               
+            }
+
+
+            //public bool  BookAvailble( bool bookNum ) {
+
+            //    if (bookNum == true)
+            //        return true;
+            //    Console.WriteLine("Available")
+
+            //    else
+            //        return false;
+            //        Console.WriteLine("Not available");
+            //}
+             
+            
+    }
+
+
+       
+}
+
+}
 
 
 
