@@ -1,0 +1,106 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApp1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Dielevery1 dielevery1 = new Dielevery1(1, "scarf", 100, "1 day ");
+            Console.WriteLine(dielevery1);
+
+            dielevery1.ChangeTime += Dielevery1_ChangeTime;
+
+            dielevery1.ChangeStatus("delay");
+            Console.ReadKey();
+
+        }
+
+        private static void Dielevery1_ChangeTime(Dielevery1 dielvery12, string message)
+        {
+            if(message != null)
+            {
+                dielvery12.created = dielvery12.created.AddDays(7);
+                Console.WriteLine($"dielivery after: {dielvery12.created}");
+               // Console.BackgroundColor = ConsoleColor.Red;
+            }
+            else
+            {
+                Console.WriteLine($"dielivery: {dielvery12.created}");
+            }
+        }
+    }
+
+
+
+
+
+
+   
+
+
+ public delegate void dieleveryTime(Dielevery1 dielvery12, string message);
+
+    public class Dielevery1
+    {
+        int item_id;
+        string item_name;
+        int item_pirce;
+        string estimateTime_To_dielevery;
+        public DateTime created = DateTime.Now;
+        public Dielevery1(int item_id, string item_name, int item_price, string estimateTime_To_dielevery)
+        {
+            this.item_id = item_id;
+            this.item_name = item_name;
+            this.item_pirce = item_price;
+            this.estimateTime_To_dielevery = estimateTime_To_dielevery;
+        }
+
+        public override string ToString()
+        {
+            return $"Item ID: {this.item_id} \n" +
+                $"Item Name: {this.item_name} \n" +
+                $"Item Price: {this.item_pirce}\n" +
+                $"Time To Dielevery: {this.estimateTime_To_dielevery}\n";
+
+        }
+
+
+        public event dieleveryTime ChangeTime;
+
+
+        public void ChangeStatus(string message)
+        {
+
+            if(ChangeTime != null)
+            {
+                ChangeTime(this, message);
+            }
+        }
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+}
+
+
+
+   
+
+    
+    
+    
+
