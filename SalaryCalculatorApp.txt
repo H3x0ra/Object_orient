@@ -1,0 +1,123 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SalaryCalculatorApp
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            manager manager = new manager
+            {
+                id = 1000,
+                name = "Ahmad A.",
+                loggedHour = 176,
+                wage = 10
+            };
+
+            Maintenance maintenance = new Maintenance
+            {
+                id = 1001,
+                name = "Salim M.",
+                loggedHour = 185,
+                wage = 9
+            };
+
+            PrintSalary(manager);
+            PrintSalary(maintenance);
+
+
+        }
+        static void PrintSalary(Employee employee)
+        {
+            Console.WriteLine($"name: {employee.name}");
+            Console.WriteLine($"Basic Salary: {employee.Basicsalary()}");
+            Console.WriteLine($"Overtime: {employee.Overtime()}");
+            Console.WriteLine($"Allowance: {employee.Allowance()}");
+            Console.WriteLine($"Avverage Salary: {employee.AverageٍٍٍSallary()}");
+            Console.WriteLine();
+            Console.ReadKey();
+        }
+    }
+
+    public class Employee
+    {
+        public int id { get; set; }
+        public string name { get; set; }
+        public int loggedHour { get; set; }
+        public decimal  wage { get; set; }
+
+      
+
+
+    public virtual decimal Basicsalary()
+    { 
+    return 176 * wage;
+    }
+
+    public virtual decimal Overtime()
+    {
+    int overtimeHours = loggedHour - 176;
+    return overtimeHours > 0 ? overtimeHours * 1.25m * wage : 0;
+
+    }
+    public virtual decimal Allowance() 
+    {
+    return 0;
+    }
+    public virtual decimal AverageٍٍٍSallary() 
+    {
+    return Basicsalary() * Overtime() * Allowance()  ;
+    }
+
+                  
+
+        }
+    public class manager : Employee
+
+    {
+
+    public override decimal Allowance()
+    {
+    decimal totalSalary = Basicsalary() + Overtime();
+            return totalSalary * 0.05m; 
+     }
+    
+    }
+
+   public class Maintenance : Employee
+    {
+        public override decimal Allowance()
+        {
+            return 100;
+        }
+    }
+
+
+   public class Sales : Employee
+    {
+        public decimal SalesCommission { get; set; }
+
+        public override decimal Allowance()
+        {
+            return SalesCommission;
+        }
+    }
+
+
+            public class Programmer : Employee
+    {
+        public bool AllTasksAccomplished { get; set; }
+
+        public override decimal Allowance()
+        {
+            decimal totalSalary = Basicsalary() + Overtime();
+            return AllTasksAccomplished ? totalSalary * 0.03m : 0;
+        }
+    }
+
+
+}
